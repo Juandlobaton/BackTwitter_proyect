@@ -1,13 +1,11 @@
-/**
- * Database Configuration Object
- */
+
 const dbconfig = {
         HOST: "localhost",
-        USER: "testuser",
-        PASSWORD: "testpwd",
+        USER: "root",
+        PASSWORD: "rCCeF4N;k",
         DB: "faketwitter",
         dialect: "mysql",
-        pool: {
+        pool: { 
           max: 5,
           min: 0,
           acquire: 30000,

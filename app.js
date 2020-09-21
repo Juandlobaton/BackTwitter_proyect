@@ -4,13 +4,13 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 
-// IMPORT ROUTES
+// rutas
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users.route');
 var postsRouter = require('./routes/posts.route');
 
 
-// IMPORT DB CONNECTION MANAGER
+// base de datos
 const dbManager = require ("./database.config/database.manager");
 
 var app = express();
@@ -21,26 +21,23 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-//Set the routing routes to the each script
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/post', postsRouter);
+app.use('/posts', postsRouter);
 
 
-/**
- * Testing the connection to the database and recreate the models if the tables doesn´t exists  
- */
 dbManager.sequelizeConnection.authenticate()
   .then(() => {
-    console.log('****Connection has been established successfully.****');
-    // recreate the models if the tables doesn´t exists
+    console.log('****Conexion establecida correctamente ****');
+    // Recrear los modelos en BD si no existen
     dbManager.sequelizeConnection.sync().then(() => {
         console.log("Database Synced");
       });
 
   })
   .catch(err => {
-    console.error('Unable to connect to the database:', err);
+    console.error('Error al conectar a BD:', err);
   });
 
 module.exports = app;

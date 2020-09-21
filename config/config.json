@@ -1,0 +1,9 @@
+{
+  "development": {
+    "username": "testuser",
+    "password": null,
+    "database": "faketwitter",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}
