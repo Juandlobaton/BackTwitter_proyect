@@ -19,7 +19,7 @@ async function createPost (req, res) {
     const newPostObject = {
         idUser: req.body.idUser,
         message: req.body.message,
-        published_date: req.body.published_date
+        published_date: new Date(req.body.published_date)
     }
     
     // EXECUTING THE CREATE QUERY - INSERT THE OBJECT INTO DATABASE 

@@ -17,7 +17,7 @@ async function createUser (req, res) {
     // CREATING THE OBJECT TO PERSIST
     const newUserObject = {
         userName: req.body.userName,
-        creation_date: req.body.creation_date
+        creation_date: new Date(req.body.creation_date)
     }
     
     // EXECUTING THE CREATE QUERY - INSERT THE OBJECT INTO DATABASE 
@@ -187,8 +187,9 @@ async function deleteAllUsers (req, res){
  */
 async function findAllUsersByCreatedDate (req, res){
     try {
+        const fecha = {create_date: new Date(req.params.creation_date) }; 
        //Execute query
-       const users = await dbManager.User.findAll();
+       const users = await dbManager.User.findAll( {where: fecha} );
         
        //Send response
        res.json({
